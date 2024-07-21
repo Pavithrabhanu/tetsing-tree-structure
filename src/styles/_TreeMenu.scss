@@ -1,0 +1,113 @@
+.additional-data {
+  // border: 2px solid $highlight-color;
+  // border-radius: 4px;
+  padding: 8px;
+  margin: 10px 30px 10px 30px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-align: justify;
+  color: $light-text;
+}
+
+// Node Highlighting and Layout
+.highlight {
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.node-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  line-height: 32px;
+  color: $light-text;
+  transition: all 0.3s ease-in; /* Add transition to node label */
+
+  &.leaf-node {
+    margin-left: 30px;
+    color: $light-text;
+  }
+
+  &.text-highlight {
+    .node-label-text {
+      font-weight: bold;
+    }
+  }
+
+  &.parent-node {
+    .node-label-text {
+      text-transform: uppercase;
+      padding-left: 10px;
+    }
+  }
+
+  .children {
+    margin-left: 10px;
+    transition: all 0.3s ease-in; /* Add transition to children */
+
+    .tree-node {
+      margin-left: 30px;
+    }
+
+    .node-label-text {
+      text-transform: capitalize;
+    }
+
+    &.text-highlight .node-label-text {
+      font-weight: bold;
+    }
+  }
+}
+
+.tree-node {
+  border: 1px solid #ddd; /* Light gray border for all nodes */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  margin: 14px 0 14px 0; /* Margin between nodes */
+  padding: 4px; /* Padding inside nodes */
+  background-color: white; /* Background color for nodes */
+  transition: all 0.3s ease-in; /* Add transition to tree node */
+}
+
+.children .tree-node {
+  margin-left: 30px;
+  width: 90%;
+}
+
+.tree-node.highlighted {
+  border-color: #007bff; /* Blue border for highlighted nodes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Darker shadow for highlighted nodes */
+  transition: all 0.3s ease-in; /* Add transition for highlighted state */
+}
+
+// Arrow Icons for Node Expansion
+// .arrow {
+//   display: inline-block;
+//   width: 10px;
+//   height: 10px;
+//   border: solid black;
+//   border-width: 0 2px 2px 0;
+//   margin-right: 5px;
+//   transition: transform 0.3s;
+
+//   &.right {
+//     transform: rotate(45deg);
+//   }
+
+//   &.down {
+//     transform: rotate(135deg);
+//   }
+// }
+
+.sub-child {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.wrapper.dragging {
+  opacity: 0.5;
+}
+
+.children.text-highlight .node-label-text {
+  font-weight: bold;
+}

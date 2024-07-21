@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+// Define variables for colors and other reusable values
+$light-background: #d0eef5;
+$dark-background: #333333;
+$light-text: #000000;
+$dark-text: #ffffff;
+$highlight-color: #cecece; // Example highlight color
+
+// Mixins for reusable styles
+@mixin theme-button {
+  display: flex;  // Changed from block to flex for alignment
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 16px;
+  width: 30px;
+  height: 30px;
+  position: absolute;  // Ensure the button is positioned absolutely within its container
+  top: 10px;  // Adjust as needed
+  right: 10px;  // Adjust as needed
+}
+
+// Import TreeMenu styles
+@import 'TreeMenu';
+
+// Light and Dark Themes
+body {
+  &.light {
+    background-color: $light-background;
+    color: $light-text;
+  }
+
+  &.dark {
+    background-color: $dark-background;
+    color: $light-text;
+  }
+}
+
+.App {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  // border: 3px solid #e0e0e0;
+  width: 50%;
+  margin: 0 auto;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+  &.light {
+    background-color: #ffffff;
+    color: $light-text;
+  }
+
+  &.dark {
+    background-color: #444444;
+    color: $dark-text;
+    .theme-toggle {
+      border: 1px solid #fff;
+    }
+  }
+}
+
+// Theme Toggle Button
+.theme-toggle {
+  @include theme-button;
+
+  .theme-icon {
+    transition: color 0.3s ease;
+    position: absolute;  // Ensure the icon is positioned within the button
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  // Center the icon within the button
+  }
+}

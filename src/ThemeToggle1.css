@@ -1,0 +1,21 @@
+.theme-toggle {
+    display: block;
+    align-items: center;
+    font-size: 21px;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 16px;
+    width: 3%;
+    position: relative;
+  
+}
+
+.theme-icon {
+  transition: color 0.3s ease;
+    position: relative;
+    left: 3px;
+}
+
+/* .theme-icon:hover {
+  color: #555;
+} */

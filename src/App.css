@@ -1,0 +1,43 @@
+/* Default Light Theme */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+body.light {
+  background-color: #d0eef5;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.App {
+  font-family: sans-serif;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid #e0e0e0;
+  width: 50%;
+  margin: 0 auto;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+
+/* Light Theme */
+.App.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark Theme */
+.App.dark {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+

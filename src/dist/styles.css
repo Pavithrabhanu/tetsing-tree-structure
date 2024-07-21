@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.additional-data {
+  padding: 8px;
+  margin: 10px 30px 10px 30px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-align: justify;
+  color: #000000;
+}
+
+.highlight {
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.node-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  line-height: 32px;
+  color: #000000;
+  transition: all 0.3s ease-in; /* Add transition to node label */
+}
+.node-label.leaf-node {
+  margin-left: 30px;
+  color: #000000;
+}
+.node-label.text-highlight .node-label-text {
+  font-weight: bold;
+}
+.node-label.parent-node .node-label-text {
+  text-transform: uppercase;
+  padding-left: 10px;
+}
+.node-label .children {
+  margin-left: 10px;
+  transition: all 0.3s ease-in; /* Add transition to children */
+}
+.node-label .children .tree-node {
+  margin-left: 30px;
+}
+.node-label .children .node-label-text {
+  text-transform: capitalize;
+}
+.node-label .children.text-highlight .node-label-text {
+  font-weight: bold;
+}
+
+.tree-node {
+  border: 1px solid #ddd; /* Light gray border for all nodes */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  margin: 14px 0 14px 0; /* Margin between nodes */
+  padding: 4px; /* Padding inside nodes */
+  background-color: white; /* Background color for nodes */
+  transition: all 0.3s ease-in; /* Add transition to tree node */
+}
+
+.children .tree-node {
+  margin-left: 30px;
+  width: 90%;
+}
+
+.tree-node.highlighted {
+  border-color: #007bff; /* Blue border for highlighted nodes */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Darker shadow for highlighted nodes */
+  transition: all 0.3s ease-in; /* Add transition for highlighted state */
+}
+
+.sub-child {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.wrapper.dragging {
+  opacity: 0.5;
+}
+
+.children.text-highlight .node-label-text {
+  font-weight: bold;
+}
+
+body.light {
+  background-color: #d0eef5;
+  color: #000000;
+}
+body.dark {
+  background-color: #333333;
+  color: #000000;
+}
+
+.App {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.App.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+.App.dark {
+  background-color: #444444;
+  color: #ffffff;
+}
+.App.dark .theme-toggle {
+  border: 1px solid #fff;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  cursor: pointer;
+  border: 1px solid #000;
+  border-radius: 16px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.theme-toggle .theme-icon {
+  transition: color 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*# sourceMappingURL=styles.css.map */
