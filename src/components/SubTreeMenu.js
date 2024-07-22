@@ -1,47 +1,30 @@
-
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, memo } from 'react';
+import propTypes from '../utils/propTypes';
+import { handleNodeClick, handleLeafClick } from '../utils/treeUtils';
 
 const SubTreeMenu = ({ node, highlightedNodeId, onNodeClick, onLeafClick, onHighlight }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Handle click expand/collapse
-  const handleNodeClick = (event) => {
-    event.stopPropagation(); 
-    if (node.children) {
-      setIsOpen(prevState => {
-        const newState = !prevState;
-        onNodeClick(node.id, newState);
-        return newState;
-      });
-    }
-    onHighlight(node.id);
-  };
-
-  // Handle click on a leaf node
-  const handleLeafClick = (event) => {
-    event.stopPropagation(); 
-    if (!node.children) {
-      onLeafClick(node.id);
-      onHighlight(node.id);
-    }
-  };
-
-  const isHighlighted = highlightedNodeId && (node.id === highlightedNodeId || node.children?.some(child => child.id === highlightedNodeId));
-
   return (
     <div>
       <div
-        onClick={handleNodeClick}
+        onClick={(event) => handleNodeClick(event, node, isOpen, setIsOpen, onNodeClick, onHighlight)}
         style={{
           cursor: node.children ? 'pointer' : 'default',
-          backgroundColor: isHighlighted ? 'lightblue' : 'white',
-          padding: '5px',
-          userSelect: 'none' 
+          userSelect: 'none',
         }}
+        role="treeitem"
+        aria-expanded={isOpen}
+        aria-label={node.label}
       >
-        {node.children && (isOpen ? '[-] ' : '[+] ')}
-        <span onClick={handleLeafClick}>{node.label}</span>
+        {node.children && (isOpen ? 'Collapse' : 'Expand')}
+        <span
+          onClick={(event) => handleLeafClick(event, node, onLeafClick, onHighlight)}
+          role="button"
+          aria-label={`Node ${node.label}`}
+        >
+          {node.label}
+        </span>
       </div>
       {node.children && isOpen && (
         <ul style={{ paddingLeft: '20px' }}>
@@ -61,12 +44,6 @@ const SubTreeMenu = ({ node, highlightedNodeId, onNodeClick, onLeafClick, onHigh
   );
 };
 
-SubTreeMenu.propTypes = {
-  node: PropTypes.object.isRequired,
-  highlightedNodeId: PropTypes.string,
-  onNodeClick: PropTypes.func.isRequired,
-  onLeafClick: PropTypes.func.isRequired,
-  onHighlight: PropTypes.func.isRequired,
-};
+SubTreeMenu.propTypes = propTypes.subTreeMenu;
 
-export default SubTreeMenu;
+export default memo(SubTreeMenu);

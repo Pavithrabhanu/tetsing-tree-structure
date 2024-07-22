@@ -5,13 +5,21 @@ body {
 
 .additional-data {
   padding: 20px;
-  margin: 10px 30px 10px 30px;
+  margin: 10px 30px;
   line-height: 22px;
   letter-spacing: 1px;
   text-align: justify;
-  color: #000000;
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+  color: #333;
+  border-radius: 4px;
+  box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 600px) {
+  .additional-data {
+    padding: 5px;
+    margin: 5px 15px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+  }
 }
 
 .highlight {
@@ -24,15 +32,23 @@ body {
   display: flex;
   align-items: center;
   line-height: 32px;
-  color: #000000;
-  transition: all 0.3s ease-in; /* Add transition to node label */
+  color: #333;
+  transition: all 0.3s ease-in;
 }
 .node-label.leaf-node {
   margin-left: 30px;
-  color: #000000;
+  color: #333;
 }
 .node-label.leaf-node .node-label-text {
   padding-left: 10px;
+}
+@media (max-width: 600px) {
+  .node-label.leaf-node {
+    margin-left: 0;
+  }
+  .node-label.leaf-node .node-label-text {
+    padding-left: 5px;
+  }
 }
 .node-label.text-highlight .node-label-text {
   font-weight: bold;
@@ -40,43 +56,54 @@ body {
 .node-label.parent-node .node-label-text {
   text-transform: uppercase;
   padding-left: 10px;
-  text-transform: uppercase;
-  padding-left: 10px;
-  font-size: 18px;
+  font-size: 1rem;
   line-height: 11px;
   font-weight: 600;
 }
-.node-label .children {
+@media (max-width: 600px) {
+  .node-label.parent-node .node-label-text {
+    font-size: 16px;
+    line-height: 9px;
+    padding-left: 5px;
+  }
+}
+
+.children {
   margin-left: 10px;
-  transition: all 0.3s ease-in; /* Add transition to children */
+  transition: all 0.3s ease-in;
 }
-.node-label .children .tree-node {
-  margin-left: 30px;
+.children .tree-node {
+  margin-left: 8px;
+  font-style: italic;
 }
-.node-label .children .node-label-text {
+@media (max-width: 600px) {
+  .children .tree-node {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.children .node-label-text {
   text-transform: capitalize;
 }
-.node-label .children.text-highlight .node-label-text {
+.children.text-highlight .node-label-text {
   font-weight: bold;
 }
 
 .tree-node {
-  border-radius: 8px; /* Rounded corners */
-  margin: 14px 0 14px 0; /* Margin between nodes */
-  padding: 4px; /* Padding inside nodes */
-  background-color: white; /* Background color for nodes */
-  transition: all 0.3s ease-in; /* Add transition to tree node */
+  padding: 6px;
+  background-color: white;
+  transition: all 0.3s ease-in;
 }
-
-.children .tree-node {
-  margin-left: 30px;
-  width: 90%;
-}
-
 .tree-node.highlighted {
-  border-color: #007bff; /* Blue border for highlighted nodes */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Darker shadow for highlighted nodes */
-  transition: all 0.3s ease-in; /* Add transition for highlighted state */
+  border-color: #007bff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.text-highlight,
+.children.text-highlight .node-label-text,
+.text-highlight .toggle-icon,
+.text-highlight .leaf-icon {
+  color: #007bff;
 }
 
 .sub-child {
@@ -92,55 +119,13 @@ body {
   font-weight: bold;
 }
 
-/* TreeNode.css */
-/* TreeNode.css */
-.text-highlight,
-.children.text-highlight .node-label-text,
-.text-highlight .toggle-icon,
-.text-highlight .leaf-icon {
-  color: #007bff; /* Highlight color */
-}
-
-/* TreeNode.css */
-/* Existing styles... */
-/* Additional media queries for responsive design */
-@media (max-width: 600px) {
-  .additional-data {
-    padding: 5px;
-    margin: 5px 15px 5px 15px;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    text-align: justify;
-  }
-  .node-label {
-    line-height: 28px;
-  }
-  .node-label.leaf-node {
-    margin-left: 0px;
-  }
-  .node-label.leaf-node .node-label-text {
-    padding-left: 5px;
-  }
-  .node-label.parent-node .node-label-text {
-    font-size: 16px;
-    line-height: 9px;
-    padding-left: 5px;
-  }
-  .children {
-    margin-left: 5px;
-  }
-  .children .tree-node {
-    margin-left: 0px;
-    width: 100%;
-  }
-}
 body.light {
   background-color: #efefef;
-  color: #000000;
+  color: #333;
 }
 body.dark {
   background-color: #333333;
-  color: #000000;
+  color: #333;
 }
 
 .App {
@@ -148,14 +133,14 @@ body.dark {
   display: flex;
   justify-content: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 50px auto;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
 .App.light {
   background-color: #ffffff;
-  color: #000000;
+  color: #333;
 }
 .App.dark {
   background-color: #444444;

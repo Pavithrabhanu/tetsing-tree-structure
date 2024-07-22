@@ -1,28 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import propTypes from '../utils/propTypes';
 import TreeNode from './TreeNode';
+import { handleTreeNodeClick, handleHighlight } from '../utils/treeUtils';
 
 const TreeMenu = ({ items, onClick }) => {
   const [highlightedNodeIdMap, setHighlightedNodeIdMap] = useState({});
   const [highlightedNodes, setHighlightedNodes] = useState([]);
-
-  const handleNodeClick = (id, isOpen, treeId) => {
-    onClick(id, isOpen);
-    setHighlightedNodeIdMap((prevMap) => ({
-      ...prevMap,
-      [treeId]: id,
-    }));
-  };
-
-  const handleHighlight = (nodeId, isHighlighted) => {
-    setHighlightedNodes((prev) => {
-      if (isHighlighted) {
-        return [...prev, nodeId];
-      } else {
-        return prev.filter((id) => id !== nodeId);
-      }
-    });
-  };
 
   return (
     <div className="parent-node-container">
@@ -32,23 +15,14 @@ const TreeMenu = ({ items, onClick }) => {
           node={item}
           highlightedNodes={highlightedNodes}
           highlightedNodeId={highlightedNodeIdMap[item.id]}
-          onClick={(id, isOpen) => handleNodeClick(id, isOpen, item.id)}
-          onHighlight={(id) => handleHighlight(id, item.id)}
+          onClick={(id, isOpen) => handleTreeNodeClick(id, isOpen, item.id, onClick, setHighlightedNodeIdMap)}
+          onHighlight={(id) => handleHighlight(id, item.id, setHighlightedNodes)}
         />
       ))}
     </div>
   );
 };
 
-TreeMenu.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      children: PropTypes.array,
-    })
-  ).isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+TreeMenu.propTypes = propTypes.treeMenu;
 
 export default TreeMenu;

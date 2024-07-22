@@ -1,61 +1,32 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { fetchAdditionalData } from '../utils/dynamicApi';
 import { FaCaretDown, FaCaretUp, FaArrowRight, FaArrowDown } from 'react-icons/fa';
-
+import { useTreeNode } from '../hooks/useTreeNode';
 
 const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showAdditionalData, setShowAdditionalData] = useState(false);
-  const [additionalData, setAdditionalData] = useState(null);
-  const [dataError, setDataError] = useState(false);
-
-  // Function to handle highlighting of a node and its descendants
-  const handleHighlight = (node, isHighlighted) => {
-    onHighlight(node.id, isHighlighted);
-    if (node.children) {
-      node.children.forEach((child) => handleHighlight(child, isHighlighted));
-    }
-  };
+  const {
+    isOpen,
+    showAdditionalData,
+    additionalData,
+    dataError,
+    toggleNode,
+  } = useTreeNode(node, onHighlight, onClick);
 
   const isHighlighted = highlightedNodes.includes(node.id);
-
-  const handleToggle = async () => {
-    const newOpenState = !isOpen;
-    setIsOpen(newOpenState);
-    onClick(node.id, newOpenState);
-
-    if (node.children) {
-      // Toggle highlight for the parent and its children
-      handleHighlight(node, !isHighlighted);
-    } else {
-      if (!showAdditionalData) {
-        try {
-          const data = await fetchAdditionalData(node.id);
-          setAdditionalData(data || null);
-          setDataError(!data);
-        } catch {
-          setAdditionalData(null);
-          setDataError(true);
-        }
-      }
-      setShowAdditionalData(!showAdditionalData);
-    }
-  };
 
   return (
     <div className={`tree-node ${isHighlighted ? 'highlighted' : ''}`}>
       <div
         className={`node-label ${node.children ? 'parent-node' : 'leaf-node'} ${isOpen ? 'text-highlight' : ''}`}
-        onClick={handleToggle}
+        onClick={toggleNode}
+        title={node.label} // Add tooltip here
       >
-        {node.children && (
-          <span className="toggle-icon">
+        {node.children ? (
+          <span className="toggle-icon" aria-label={isOpen ? 'Collapse' : 'Expand'}>
             {isOpen ? <FaCaretUp /> : <FaCaretDown />}
           </span>
-        )}
-        {!node.children && (
-          <span className="leaf-icon">
+        ) : (
+          <span className="leaf-icon" aria-label={isOpen ? 'Open' : 'Closed'}>
             {isOpen ? <FaArrowDown size={12} /> : <FaArrowRight size={12} />}
           </span>
         )}
@@ -65,7 +36,7 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
         <div className={`children ${isOpen ? 'text-highlight' : ''}`}>
           {node.children.map((child) => (
             <TreeNode
-              key={child.id} // Ensure each TreeNode has a unique key
+              key={child.id}
               node={child}
               highlightedNodes={highlightedNodes}
               onClick={onClick}
@@ -100,4 +71,4 @@ TreeNode.propTypes = {
   onHighlight: PropTypes.func.isRequired,
 };
 
-export default TreeNode;
+export default memo(TreeNode);

@@ -20,7 +20,9 @@ const ThemeToggle = () => {
 
   return (
     <div className="theme-toggle">
-      <Icon className="theme-icon" onClick={handleToggle} />
+      <Icon className="theme-icon" onClick={handleToggle} 
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`} 
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}/>
     </div>
   );
 };
