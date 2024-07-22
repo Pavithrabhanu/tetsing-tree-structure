@@ -1,12 +1,14 @@
 .additional-data {
   // border: 2px solid $highlight-color;
   // border-radius: 4px;
-  padding: 8px;
+  padding: 20px;
   margin: 10px 30px 10px 30px;
   line-height: 22px;
   letter-spacing: 1px;
   text-align: justify;
-  color: $light-text;
+  color: $light-text;  
+  border-radius: 4px; /* Rounded corners */
+   box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
 // Node Highlighting and Layout
@@ -26,6 +28,9 @@
   &.leaf-node {
     margin-left: 30px;
     color: $light-text;
+    .node-label-text{
+      padding-left:10px;
+    }
   }
 
   &.text-highlight {
@@ -38,6 +43,11 @@
     .node-label-text {
       text-transform: uppercase;
       padding-left: 10px;
+      text-transform: uppercase;
+    padding-left: 10px;
+    font-size: 18px;
+    line-height: 11px;
+    font-weight: 600;
     }
   }
 
@@ -60,9 +70,9 @@
 }
 
 .tree-node {
-  border: 1px solid #ddd; /* Light gray border for all nodes */
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  // border: 1px solid #ddd; /* Light gray border for all nodes */
+   border-radius: 8px; /* Rounded corners */
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
   margin: 14px 0 14px 0; /* Margin between nodes */
   padding: 4px; /* Padding inside nodes */
   background-color: white; /* Background color for nodes */
@@ -110,4 +120,114 @@
 
 .children.text-highlight .node-label-text {
   font-weight: bold;
+}
+/* TreeNode.css */
+
+/* TreeNode.css */
+
+// .tree-node {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .node-label {
+//   display: flex;
+//   align-items: center;
+//   padding: 5px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease, color 0.3s ease;
+// }
+
+// .node-label:hover {
+//   background-color: #f0f0f0;
+// }
+
+// .parent-node .node-label {
+//   font-weight: normal;
+// }
+
+// .leaf-node .node-label {
+//   font-weight: normal;
+// }
+
+// .node-label-text {
+//   margin-left: 8px;
+// }
+
+// .bold-text {
+//   font-weight: bold;
+// }
+
+.text-highlight,
+.children.text-highlight .node-label-text,
+.text-highlight .toggle-icon,
+.text-highlight .leaf-icon {
+  color: #007bff; /* Highlight color */
+}
+
+// .highlighted {
+//   border-left: 3px solid #007bff; /* Highlight border */
+//   padding-left: 5px;
+// }
+
+// .toggle-icon, .leaf-icon {
+//   margin-right: 8px;
+//   display: flex;
+//   align-items: center;
+// }
+
+// .children {
+//   padding-left: 20px;
+//   transition: max-height 0.3s ease;
+//   overflow: hidden;
+// }
+
+// .additional-data {
+//   margin-top: 5px;
+//   padding: 5px;
+//   border: 1px solid #ddd;
+//   border-radius: 4px;
+// }
+
+
+/* TreeNode.css */
+
+/* Existing styles... */
+
+/* Additional media queries for responsive design */
+@media (max-width: 600px) {
+  .additional-data {
+    padding: 5px;
+    margin: 5px 15px 5px 15px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-align: justify;
+  }
+
+  .node-label {
+    line-height: 28px;
+
+    &.leaf-node {
+      margin-left: 0px;
+
+      .node-label-text {
+        padding-left: 5px;
+      }
+    }
+
+    &.parent-node .node-label-text {
+      font-size: 16px;
+      line-height: 9px;
+      padding-left: 5px;
+    }
+  }
+
+  .children {
+    margin-left: 5px;
+
+    .tree-node {
+      margin-left: 0px;
+      width: 100%;
+    }
+  }
 }

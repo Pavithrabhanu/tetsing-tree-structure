@@ -1,19 +1,17 @@
+// src/index.js
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Correct import for React 18+
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import store from './redux/store';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './dist/styles.css';
 
-// Create a root and render the App component
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
       <App />
-    </Provider>
-  </React.StrictMode>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
 );
-
-// Optionally measure performance
-reportWebVitals();

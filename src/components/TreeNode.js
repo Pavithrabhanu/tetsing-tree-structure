@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchAdditionalData } from '../utils/dynamicApi';
-import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { FaCaretDown, FaCaretUp, FaArrowRight, FaArrowDown } from 'react-icons/fa';
+
 
 const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
   const [additionalData, setAdditionalData] = useState(null);
   const [dataError, setDataError] = useState(false);
 
+  // Function to handle highlighting of a node and its descendants
   const handleHighlight = (node, isHighlighted) => {
     onHighlight(node.id, isHighlighted);
     if (node.children) {
@@ -24,11 +26,8 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
     onClick(node.id, newOpenState);
 
     if (node.children) {
-      if (newOpenState) {
-        handleHighlight(node, true);
-      } else {
-        handleHighlight(node, false);
-      }
+      // Toggle highlight for the parent and its children
+      handleHighlight(node, !isHighlighted);
     } else {
       if (!showAdditionalData) {
         try {
@@ -53,6 +52,11 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
         {node.children && (
           <span className="toggle-icon">
             {isOpen ? <FaCaretUp /> : <FaCaretDown />}
+          </span>
+        )}
+        {!node.children && (
+          <span className="leaf-icon">
+            {isOpen ? <FaArrowDown size={12} /> : <FaArrowRight size={12} />}
           </span>
         )}
         <span className={`node-label-text ${isOpen ? 'bold-text' : ''}`}>{node.label}</span>

@@ -4,12 +4,14 @@ body {
 }
 
 .additional-data {
-  padding: 8px;
+  padding: 20px;
   margin: 10px 30px 10px 30px;
   line-height: 22px;
   letter-spacing: 1px;
   text-align: justify;
   color: #000000;
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 4px 4px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
 .highlight {
@@ -29,12 +31,20 @@ body {
   margin-left: 30px;
   color: #000000;
 }
+.node-label.leaf-node .node-label-text {
+  padding-left: 10px;
+}
 .node-label.text-highlight .node-label-text {
   font-weight: bold;
 }
 .node-label.parent-node .node-label-text {
   text-transform: uppercase;
   padding-left: 10px;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-size: 18px;
+  line-height: 11px;
+  font-weight: 600;
 }
 .node-label .children {
   margin-left: 10px;
@@ -51,9 +61,7 @@ body {
 }
 
 .tree-node {
-  border: 1px solid #ddd; /* Light gray border for all nodes */
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  border-radius: 8px; /* Rounded corners */
   margin: 14px 0 14px 0; /* Margin between nodes */
   padding: 4px; /* Padding inside nodes */
   background-color: white; /* Background color for nodes */
@@ -84,6 +92,48 @@ body {
   font-weight: bold;
 }
 
+/* TreeNode.css */
+/* TreeNode.css */
+.text-highlight,
+.children.text-highlight .node-label-text,
+.text-highlight .toggle-icon,
+.text-highlight .leaf-icon {
+  color: #007bff; /* Highlight color */
+}
+
+/* TreeNode.css */
+/* Existing styles... */
+/* Additional media queries for responsive design */
+@media (max-width: 600px) {
+  .additional-data {
+    padding: 5px;
+    margin: 5px 15px 5px 15px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-align: justify;
+  }
+  .node-label {
+    line-height: 28px;
+  }
+  .node-label.leaf-node {
+    margin-left: 0px;
+  }
+  .node-label.leaf-node .node-label-text {
+    padding-left: 5px;
+  }
+  .node-label.parent-node .node-label-text {
+    font-size: 16px;
+    line-height: 9px;
+    padding-left: 5px;
+  }
+  .children {
+    margin-left: 5px;
+  }
+  .children .tree-node {
+    margin-left: 0px;
+    width: 100%;
+  }
+}
 body.light {
   background-color: #efefef;
   color: #000000;
