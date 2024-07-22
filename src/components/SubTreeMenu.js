@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 import propTypes from '../utils/propTypes';
 import { handleNodeClick, handleLeafClick } from '../utils/treeUtils';
 
@@ -13,16 +13,9 @@ const SubTreeMenu = ({ node, highlightedNodeId, onNodeClick, onLeafClick, onHigh
           cursor: node.children ? 'pointer' : 'default',
           userSelect: 'none',
         }}
-        role="treeitem"
-        aria-expanded={isOpen}
-        aria-label={node.label}
       >
         {node.children && (isOpen ? 'Collapse' : 'Expand')}
-        <span
-          onClick={(event) => handleLeafClick(event, node, onLeafClick, onHighlight)}
-          role="button"
-          aria-label={`Node ${node.label}`}
-        >
+        <span onClick={(event) => handleLeafClick(event, node, onLeafClick, onHighlight)}>
           {node.label}
         </span>
       </div>
@@ -46,4 +39,4 @@ const SubTreeMenu = ({ node, highlightedNodeId, onNodeClick, onLeafClick, onHigh
 
 SubTreeMenu.propTypes = propTypes.subTreeMenu;
 
-export default memo(SubTreeMenu);
+export default SubTreeMenu;

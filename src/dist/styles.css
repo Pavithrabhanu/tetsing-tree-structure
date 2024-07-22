@@ -111,10 +111,6 @@ body {
   padding-left: 20px;
 }
 
-.wrapper.dragging {
-  opacity: 0.5;
-}
-
 .children.text-highlight .node-label-text {
   font-weight: bold;
 }
@@ -143,7 +139,7 @@ body.dark {
   color: #333;
 }
 .App.dark {
-  background-color: #444444;
+  background-color: #666262;
   color: #ffffff;
 }
 .App.dark .theme-toggle {

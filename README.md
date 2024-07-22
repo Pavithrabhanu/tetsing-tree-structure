@@ -15,23 +15,23 @@ The Tree Structure Project is a React-based web application that visualizes a dy
 
 To ensure a smooth and responsive user experience, the application includes the following performance optimizations:
 
-- **Component Memoization**: Utilizes `React.memo` to prevent unnecessary re-renders of components such as `TreeNode`, `SubTreeMenu`, and `TreeMenu`. This improves rendering performance when props do not change.
-- **Lazy Loading**: Implements dynamic imports and `React.lazy` for loading components only when they are needed. This helps reduce the initial load time and improves the overall performance.
+- **Component Memoization**: Utilizes `React.memo` to prevent unnecessary re-renders of components such as `TreeNode` and `SubTreeMenu`. This improves rendering performance when props do not change.
+- **Lazy Loading**: Implements dynamic imports and `React.lazy` for loading components only when they are needed. 
+This helps reduce the initial load time and improves the overall performance.
 - **Efficient State Management**: Uses Redux for state management, allowing centralized and efficient updates to the application state.
 
 ## Routing
 
-The application uses `react-router-dom` for client-side routing, allowing for seamless navigation between different views:
+The application uses `react-router-dom` for client-side routing, allowing for seamless navigation between different views: 
+Implemented considering future implementations.
 
 - **Dynamic Routing**: Routes are defined to handle different paths, enabling navigation without full page reloads.
 - **Code Splitting**: Routes are configured to load components only when needed, further enhancing performance through lazy loading.
 
 ## Accessibility
 
-The application is designed with accessibility in mind:
+The application is designed with basic accessibility :
 
-- **Keyboard Navigation**: Ensures that all interactive elements can be navigated and operated using a keyboard.
-- **Aria Labels**: Uses `aria-label` attributes and accessible names for interactive elements to improve screen reader support.
 - **Tooltips**: Provides tooltips for icons and interactive elements to give additional context and improve usability for all users.
 
 ## Installation
@@ -71,9 +71,14 @@ To run the tests and ensure the application is functioning correctly:
 npm test
 
 Project Structure
-src/components/: Contains React components such as TreeNode, SubTreeMenu, and TreeMenu.
-src/redux/: Contains Redux setup, including store and treeSlice.
-src/utils/: Utility functions for fetching data.
-src/App.js: Main application component integrating the tree structure and theme toggle.
-src/testing/: Contains test files for components and utilities.
-src/routes/: Contains route definitions and lazy-loaded components.
+- src/components/: Contains React components such as TreeNode, SubTreeMenu, and TreeMenu.
+
+- src/redux/: Contains Redux setup, including store and treeSlice.
+
+- src/utils/: Utility functions for fetching data.
+
+- src/App.js: Main application component integrating the tree structure and theme toggle.
+
+- src/testing/: Contains test files for components and utilities.
+
+- src/routes/: Contains route definitions and lazy-loaded components.
