@@ -1,9 +1,5 @@
 module.exports = {
     testEnvironment: 'jsdom',
-    setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
-    moduleNameMapper: {
-      '\\.(css|less)$': 'identity-obj-proxy',
-    },
-    testPathIgnorePatterns: ['/node_modules/', '/dist/'],
+    setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   };
   

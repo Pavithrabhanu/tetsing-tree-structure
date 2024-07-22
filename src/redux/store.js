@@ -1,8 +1,10 @@
-// store.js
+import { configureStore } from '@reduxjs/toolkit';
+import treeReducer from './treeSlice';
 
-import { createStore } from 'redux';
-import reducer from './reducers';
-
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: {
+    tree: treeReducer,
+  },
+});
 
 export default store;

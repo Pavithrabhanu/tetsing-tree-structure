@@ -1,15 +1,11 @@
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TreeNode from './TreeNode';
 
 const TreeMenu = ({ items, onClick }) => {
- 
   const [highlightedNodeIdMap, setHighlightedNodeIdMap] = useState({});
- 
   const [highlightedNodes, setHighlightedNodes] = useState([]);
 
-  // Handler for node click events
   const handleNodeClick = (id, isOpen, treeId) => {
     onClick(id, isOpen);
     setHighlightedNodeIdMap((prevMap) => ({
@@ -18,7 +14,6 @@ const TreeMenu = ({ items, onClick }) => {
     }));
   };
 
-  // Handler for highlight events
   const handleHighlight = (nodeId, isHighlighted) => {
     setHighlightedNodes((prev) => {
       if (isHighlighted) {
@@ -33,7 +28,7 @@ const TreeMenu = ({ items, onClick }) => {
     <div className="parent-node-container">
       {items.map((item) => (
         <TreeNode
-          key={item.id}
+          key={item.id} // Ensure each TreeNode has a unique key
           node={item}
           highlightedNodes={highlightedNodes}
           highlightedNodeId={highlightedNodeIdMap[item.id]}

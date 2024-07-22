@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchAdditionalData } from '../utils/dynamicApi';
-import { FaCaretDown, FaCaretUp } from 'react-icons/fa'; // Import Font Awesome icons
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 
-// TreeNode component: Represents a node in the tree structure
 const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAdditionalData, setShowAdditionalData] = useState(false);
   const [additionalData, setAdditionalData] = useState(null);
   const [dataError, setDataError] = useState(false);
 
-  // Recursive function to highlight or unhighlight the node and its children
   const handleHighlight = (node, isHighlighted) => {
     onHighlight(node.id, isHighlighted);
     if (node.children) {
-      node.children.forEach(child => handleHighlight(child, isHighlighted));
+      node.children.forEach((child) => handleHighlight(child, isHighlighted));
     }
   };
 
-  // Determine if the node or any of its children are highlighted
   const isHighlighted = highlightedNodes.includes(node.id);
 
-  // Function to handle toggle actions (expand/collapse or fetch/show additional data)
   const handleToggle = async () => {
     const newOpenState = !isOpen;
     setIsOpen(newOpenState);
     onClick(node.id, newOpenState);
 
     if (node.children) {
-      // If the node has children, only highlight the node and its children when it's opened
       if (newOpenState) {
-        handleHighlight(node, true); // Highlight the node and its children
+        handleHighlight(node, true);
       } else {
-        handleHighlight(node, false); // Unhighlight the node and its children
+        handleHighlight(node, false);
       }
     } else {
       if (!showAdditionalData) {
@@ -64,9 +59,9 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
       </div>
       {node.children && isOpen && (
         <div className={`children ${isOpen ? 'text-highlight' : ''}`}>
-          {node.children.map(child => (
+          {node.children.map((child) => (
             <TreeNode
-              key={child.id}
+              key={child.id} // Ensure each TreeNode has a unique key
               node={child}
               highlightedNodes={highlightedNodes}
               onClick={onClick}
@@ -77,7 +72,13 @@ const TreeNode = ({ node, highlightedNodes, onClick, onHighlight }) => {
       )}
       {!node.children && showAdditionalData && (
         <div className="additional-data">
-          {dataError ? <p>No data available</p> : <div className="description">{additionalData?.description || 'No description available'}</div>}
+          {dataError ? (
+            <p>No data available</p>
+          ) : (
+            <div className="description">
+              {additionalData?.description || 'No description available'}
+            </div>
+          )}
         </div>
       )}
     </div>
